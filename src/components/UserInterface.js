@@ -17,7 +17,7 @@ function UserInterface({ walletAddress, signer }) {
     >
       
       <motion.button
-        className="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-full text-white w-full flex items-center justify-center mb-6"
+        className="bg-primary-dark hover:bg-secondary px-6 py-3 rounded-full text-white w-full flex items-center justify-center mb-6"
         onClick={toggleHistory}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
@@ -34,10 +34,9 @@ function UserInterface({ walletAddress, signer }) {
         className="overflow-hidden"
       >
         {showHistory && (
-          <div className="bg-indigo-50 p-6 rounded-lg mb-6">
-            <h3 className="text-xl font-semibold mb-4 text-indigo-800 text-center">Your Report History</h3>
-            {/* Implement history display */}
-            <p className="text-gray-600 text-center">No reports found. Start by submitting a new report!</p>
+          <div className="bg-primary-light p-6 rounded-lg mb-6">
+            <h3 className="text-xl font-semibold mb-4 text-secondary text-center">Your Report History</h3>
+            <p className="text-secondary text-center">No reports found. Start by submitting a new report!</p>
           </div>
         )}
       </motion.div>

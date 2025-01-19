@@ -112,7 +112,7 @@ function WebcamCapture({ walletAddress, signer }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <h2 className="text-2xl font-bold text-indigo-800 mb-6">Capture Evidence</h2>
+      <h2 className="text-2xl font-bold text-secondary mb-6">Capture Evidence</h2>
       {isWebcamOn && (
         <Webcam
           audio={false}
@@ -137,13 +137,13 @@ function WebcamCapture({ walletAddress, signer }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="description" className="block text-sm font-medium text-secondary mb-2">
               Fill Description
             </label>
             <textarea
               id="description"
               rows="3"
-              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md p-2"
+              className="shadow-sm focus:ring-primary-dark focus:border-primary-dark mt-1 block w-full sm:text-sm border border-gray-300 rounded-md p-2"
               placeholder="Describe the captured evidence..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -156,30 +156,30 @@ function WebcamCapture({ walletAddress, signer }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
           >
-            <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="location" className="block text-sm font-medium text-secondary mb-2">
               Location
             </label>
             <div className="flex items-center">
               <input
                 type="text"
                 id="location"
-                className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md p-2"
+                className="shadow-sm focus:ring-primary-dark focus:border-primary-dark block w-full sm:text-sm border border-gray-300 rounded-md p-2"
                 value={location}
                 readOnly
               />
               <button
                 onClick={getLocation}
-                className="ml-2 p-2 bg-indigo-100 rounded-md"
+                className="ml-2 p-2 bg-primary-light rounded-md"
                 disabled={isGettingLocation}
               >
-                <MapPin className={`text-indigo-600 ${isGettingLocation ? 'animate-spin' : ''}`} size={20} />
+                <MapPin className={`text-primary-dark ${isGettingLocation ? 'animate-spin' : ''}`} size={20} />
               </button>
             </div>
           </motion.div>
 
           {!isUploaded && (
             <motion.button
-              className={`bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-full text-white w-full flex items-center justify-center ${isUploading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`bg-primary-dark hover:bg-secondary px-6 py-3 rounded-full text-white w-full flex items-center justify-center ${isUploading ? 'opacity-50 cursor-not-allowed' : ''}`}
               onClick={handleUpload}
               disabled={isUploading}
               whileHover={{ scale: 1.05 }}
@@ -193,7 +193,7 @@ function WebcamCapture({ walletAddress, signer }) {
           {isUploaded && (
             <>
               <motion.button
-                className="bg-green-500 hover:bg-green-600 px-6 py-3 rounded-full text-white w-full flex items-center justify-center"
+                className="bg-primary hover:bg-primary-dark px-6 py-3 rounded-full text-white w-full flex items-center justify-center"
                 onClick={handleSubmitReport}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -222,7 +222,7 @@ function WebcamCapture({ walletAddress, signer }) {
           transition={{ delay: 0.3 }}
         >
           <motion.button 
-            className="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-full text-white w-full flex items-center justify-center"
+            className="bg-primary-dark hover:bg-secondary px-6 py-3 rounded-full text-white w-full flex items-center justify-center"
             onClick={capture}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -231,7 +231,7 @@ function WebcamCapture({ walletAddress, signer }) {
             Capture Photo
           </motion.button>
           <motion.button 
-            className="bg-yellow-500 hover:bg-yellow-600 px-6 py-3 rounded-full text-white w-full flex items-center justify-center"
+            className="bg-primary hover:bg-primary-dark px-6 py-3 rounded-full text-white w-full flex items-center justify-center"
             onClick={toggleCamera}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

@@ -24,11 +24,11 @@ function LandingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-primary-light to-primary">
       <header className="flex justify-between items-center p-6">
-        <div className="text-3xl font-bold text-indigo-600">TRAFFIX</div>
+        <div className="text-3xl font-bold text-primary-dark">RECLAIM</div>
         <button 
-          className="text-indigo-600 hover:text-indigo-800 transition-colors duration-300"
+          className="text-primary-dark hover:text-secondary transition-colors duration-300"
           onClick={handleHowToUse}
         >
           How to use?
@@ -53,12 +53,12 @@ function LandingPage() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="text-4xl font-bold text-indigo-800 mb-6">Empower Road Safety</h1>
-          <p className="text-xl text-gray-700 mb-8">
-            Traffix empowers citizens to anonymously and securely report reckless driving, earning rewards while contributing to safer roads and making road safety a community-driven mission.
+          <h1 className="text-4xl font-bold text-secondary mb-6">Report Drug Abuse</h1>
+          <p className="text-xl text-secondary mb-8">
+            Reclaim empowers citizens to anonymously and securely report drug-related activities, earning rewards while contributing to safer communities and making public safety a community-driven mission.
           </p>
           <motion.button 
-            className="bg-indigo-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-indigo-700 transition-colors duration-300 shadow-lg"
+            className="bg-primary-dark text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-secondary transition-colors duration-300 shadow-lg"
             onClick={handleGetStarted}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -87,7 +87,7 @@ function LandingPage() {
             >
               <X size={24} />
             </button>
-            <h2 className="text-2xl font-bold text-indigo-600 mb-6">How to Use Traffix</h2>
+            <h2 className="text-2xl font-bold text-primary-dark mb-6">How to Use Reclaim</h2>
             <ul className="space-y-4">
               {steps.map((step, index) => (
                 <motion.li 
@@ -97,12 +97,12 @@ function LandingPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold mr-3">
+                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-primary-light text-primary-dark flex items-center justify-center font-bold mr-3">
                     {index + 1}
                   </span>
                   <div>
-                    <h3 className="font-semibold text-lg text-indigo-800">{step.title}</h3>
-                    <p className="text-gray-600">{step.description}</p>
+                    <h3 className="font-semibold text-lg text-secondary">{step.title}</h3>
+                    <p className="text-secondary">{step.description}</p>
                   </div>
                 </motion.li>
               ))}

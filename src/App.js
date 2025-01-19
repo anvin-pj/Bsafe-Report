@@ -1,16 +1,13 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import LandingPage from './LandingPage'; // Import the LandingPage
-import AppContent from './AppContent';  // Import the new AppContent
-
-
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import AppContent from './AppContent';
 
 function App() {
   return (
     <Router>
       <Routes>
-        {/* Define route for the LandingPage */}
-        <Route path="/" element={<LandingPage />} />
+        {/* Redirect from root to /app */}
+        <Route path="/" element={<Navigate to="/app" replace />} />
         
         {/* Define route for the main wallet connection app */}
         <Route path="/app" element={<AppContent />} />

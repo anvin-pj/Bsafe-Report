@@ -61,14 +61,14 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col items-center justify-center p-4 sm:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-primary-light to-primary flex flex-col items-center justify-center p-4 sm:p-8">
       <motion.h1 
-        className="text-5xl font-bold mb-12 text-indigo-800"
+        className="text-5xl font-bold mb-12 text-secondary"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        Traffix
+        Reclaim
       </motion.h1>
 
       {!walletConnected ? (
@@ -78,7 +78,7 @@ function AppContent() {
           transition={{ duration: 0.5 }}
         >
           <motion.button
-            className={`bg-indigo-600 hover:bg-indigo-700 px-8 py-4 rounded-full text-white text-lg font-semibold transition-all duration-300 flex items-center ${loading ? 'animate-pulse' : ''}`}
+            className={`bg-primary-dark hover:bg-secondary px-8 py-4 rounded-full text-white text-lg font-semibold transition-all duration-300 flex items-center ${loading ? 'animate-pulse' : ''}`}
             onClick={handleConnectWallet}
             disabled={loading}
             whileHover={{ scale: 1.05 }}
@@ -96,8 +96,8 @@ function AppContent() {
           transition={{ duration: 0.8 }}
         >
           <div className="flex items-center justify-center mb-6">
-            <User className="text-indigo-600 mr-2" size={24} />
-            <p className="text-lg text-gray-700">Connected to wallet: <span className="font-semibold">{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span></p>
+            <User className="text-primary-dark mr-2" size={24} />
+            <p className="text-lg text-secondary">Connected to wallet: <span className="font-semibold">{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span></p>
           </div>
           {isOwner ? (
             <motion.div
@@ -106,8 +106,8 @@ function AppContent() {
               transition={{ delay: 0.3 }}
             >
               <div className="flex items-center justify-center mb-4">
-                <Shield className="text-indigo-600 mr-2" size={24} />
-                <h2 className="text-2xl font-bold text-indigo-800">Owner Dashboard</h2>
+                <Shield className="text-primary-dark mr-2" size={24} />
+                <h2 className="text-2xl font-bold text-secondary">Owner Dashboard</h2>
               </div>
               <OwnerInterface />
             </motion.div>
@@ -117,7 +117,7 @@ function AppContent() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
-              <h2 className="text-2xl font-bold text-indigo-800 mb-4 text-center">User Dashboard</h2>
+              <h2 className="text-2xl font-bold text-secondary mb-4 text-center">User Dashboard</h2>
               <UserInterface walletAddress={walletAddress} signer={signer} />
             </motion.div>
           )}

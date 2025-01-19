@@ -17,7 +17,7 @@ function Modal({ uploadUrl, closeModal }) {
         exit={{ scale: 0.9, y: 20 }}
       >
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-indigo-800">IPFS URL</h2>
+          <h2 className="text-2xl font-bold text-secondary">IPFS URL</h2>
           <button
             onClick={closeModal}
             className="text-gray-500 hover:text-gray-700 transition-colors"
@@ -25,22 +25,22 @@ function Modal({ uploadUrl, closeModal }) {
             <X size={24} />
           </button>
         </div>
-        <div className="bg-indigo-50 rounded-lg p-4 mb-6">
+        <div className="bg-primary-light rounded-lg p-4 mb-6">
           <div className="flex items-center mb-2">
-            <LinkIcon size={20} className="text-indigo-600 mr-2" />
-            <span className="font-semibold text-indigo-800">Your file is available at:</span>
+            <LinkIcon size={20} className="text-primary-dark mr-2" />
+            <span className="font-semibold text-secondary">Your file is available at:</span>
           </div>
           <a
             href={uploadUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-indigo-600 hover:text-indigo-800 underline break-all"
+            className="text-primary-dark hover:text-secondary underline break-all"
           >
             {uploadUrl}
           </a>
         </div>
         <motion.button
-          className="bg-indigo-600 hover:bg-indigo-700 text-white w-full py-3 rounded-full font-semibold"
+          className="bg-primary-dark hover:bg-secondary text-white w-full py-3 rounded-full font-semibold"
           onClick={closeModal}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}

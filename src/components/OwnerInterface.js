@@ -11,16 +11,16 @@ function OwnerInterface() {
       transition={{ duration: 0.8 }}
     >
       <div className="flex items-center justify-center mb-6">
-        <Shield className="text-indigo-600 mr-3" size={32} />
-        <h2 className="text-3xl font-bold text-indigo-800">Owner Dashboard</h2>
+        <Shield className="text-primary-dark mr-3" size={32} />
+        <h2 className="text-3xl font-bold text-secondary">Owner Dashboard</h2>
       </div>
 
-      <p className="text-gray-600 text-center mb-8">
+      <p className="text-secondary text-center mb-8">
         As the owner, you have the authority to verify and manage reports submitted by users.
       </p>
 
       <motion.button
-        className="bg-indigo-600 hover:bg-indigo-700 px-6 py-4 rounded-full text-white w-full flex items-center justify-center text-lg font-semibold"
+        className="bg-primary-dark hover:bg-secondary px-6 py-4 rounded-full text-white w-full flex items-center justify-center text-lg font-semibold"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
@@ -28,9 +28,9 @@ function OwnerInterface() {
         Verify Reports
       </motion.button>
 
-      <div className="mt-8 bg-indigo-50 rounded-lg p-6">
-        <h3 className="text-xl font-semibold mb-4 text-indigo-800">Recent Activity</h3>
-        <p className="text-gray-600">No recent activity to display. Check back later for updates.</p>
+      <div className="mt-8 bg-primary-light rounded-lg p-6">
+        <h3 className="text-xl font-semibold mb-4 text-secondary">Recent Activity</h3>
+        <p className="text-secondary">No recent activity to display. Check back later for updates.</p>
       </div>
     </motion.div>
   );
