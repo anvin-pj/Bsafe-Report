@@ -5,6 +5,13 @@ import Modal from './Modal';
 import { pinata } from '../utils/config';
 import { ethers } from 'ethers';
 import { contractABI, contractAddress } from '../utils/contract';
+import appLogo from '../app_icon.png';
+
+// Color palette:
+// #E4F9F5 - Light mint (primary-light)
+// #30E3CA - Turquoise (primary)
+// #11999E - Teal (primary-dark)
+// #40514E - Dark gray (secondary)
 
 function WebcamCapture({ walletAddress, signer }) {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -97,21 +104,25 @@ function WebcamCapture({ walletAddress, signer }) {
 
   return (
     <motion.div 
-      className="flex flex-col items-center bg-white rounded-lg shadow-xl p-6 max-w-md w-full"
+      className="flex flex-col items-center"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <h2 className="text-2xl font-bold text-secondary mb-6">Upload Evidence</h2>
-      
       {selectedImage ? (
         <motion.div 
-          className="w-full space-y-4"
+          className="w-full space-y-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          <img src={selectedImage} alt="Selected" className="mb-4 w-full rounded-lg shadow-lg" />
+          <div className="relative rounded-xl overflow-hidden shadow-lg">
+            <img 
+              src={selectedImage} 
+              alt="Selected" 
+              className="w-full aspect-video object-cover"
+            />
+          </div>
           
           <motion.div
             className="w-full"
@@ -119,14 +130,14 @@ function WebcamCapture({ walletAddress, signer }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            <label htmlFor="description" className="block text-sm font-medium text-secondary mb-2">
-              Fill Description
+            <label htmlFor="description" className="block text-sm font-medium text-[#11999E] mb-2">
+              Incident Details
             </label>
             <textarea
               id="description"
-              rows="3"
-              className="shadow-sm focus:ring-primary-dark focus:border-primary-dark mt-1 block w-full sm:text-sm border border-gray-300 rounded-md p-2"
-              placeholder="Describe the captured evidence..."
+              rows="4"
+              className="shadow-sm focus:ring-[#30E3CA] focus:border-[#30E3CA] mt-1 block w-full sm:text-sm border border-[#E4F9F5] rounded-md p-3"
+              placeholder="Describe the incident in detail (type of drugs, suspicious activities, etc.). Your report helps in creating safer communities..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
@@ -138,72 +149,78 @@ function WebcamCapture({ walletAddress, signer }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 }}
           >
-            <label htmlFor="location" className="block text-sm font-medium text-secondary mb-2">
-              Location
+            <label htmlFor="location" className="block text-sm font-medium text-[#11999E] mb-2">
+              Incident Location
             </label>
             <div className="flex items-center">
               <input
                 type="text"
                 id="location"
-                className="shadow-sm focus:ring-primary-dark focus:border-primary-dark block w-full sm:text-sm border border-gray-300 rounded-md p-2"
+                className="shadow-sm focus:ring-[#30E3CA] focus:border-[#30E3CA] block w-full sm:text-sm border border-[#E4F9F5] rounded-md p-3"
                 value={location}
                 readOnly
               />
               <button
                 onClick={getLocation}
-                className="ml-2 p-2 bg-primary-light rounded-md"
+                className="ml-2 p-3 bg-[#E4F9F5] rounded-md hover:bg-[#30E3CA]/20 transition-colors"
                 disabled={isGettingLocation}
               >
-                <MapPin className={`text-primary-dark ${isGettingLocation ? 'animate-spin' : ''}`} size={20} />
+                <MapPin className={`text-[#11999E] ${isGettingLocation ? 'animate-spin' : ''}`} size={20} />
               </button>
             </div>
+            <p className="mt-1 text-xs text-[#40514E]">Location data is encrypted for your privacy</p>
           </motion.div>
 
-          {!isUploaded && (
-            <motion.button
-              className={`bg-primary-dark hover:bg-secondary px-6 py-3 rounded-full text-white w-full flex items-center justify-center ${isUploading ? 'opacity-50 cursor-not-allowed' : ''}`}
-              onClick={handleUpload}
-              disabled={isUploading}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Upload className="mr-2" size={20} />
-              {isUploading ? 'Uploading...' : 'Upload to IPFS'}
-            </motion.button>
-          )}
+          <div className="space-y-4 pt-4">
+            {!isUploaded && (
+              <motion.button
+                className={`bg-[#30E3CA] hover:bg-[#11999E] px-6 py-4 rounded-xl text-white w-full flex items-center justify-center shadow-lg transform transition-all duration-200 ${
+                  isUploading ? 'opacity-50 cursor-not-allowed' : 'hover:scale-102'
+                }`}
+                onClick={handleUpload}
+                disabled={isUploading}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Upload className="mr-2" size={20} />
+                {isUploading ? 'Encrypting & Uploading...' : 'Secure Upload'}
+              </motion.button>
+            )}
 
-          {isUploaded && (
-            <motion.button
-              className="bg-primary hover:bg-primary-dark px-6 py-3 rounded-full text-white w-full flex items-center justify-center"
-              onClick={handleSubmitReport}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Send className="mr-2" size={20} />
-              Submit Report
-            </motion.button>
-          )}
+            {isUploaded && (
+              <motion.button
+                className="bg-[#11999E] hover:bg-[#30E3CA] px-6 py-4 rounded-xl text-white w-full flex items-center justify-center shadow-lg transform transition-all duration-200"
+                onClick={handleSubmitReport}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Send className="mr-2" size={20} />
+                Submit Anonymous Report
+              </motion.button>
+            )}
 
-          <motion.button
-            className="bg-red-500 hover:bg-red-600 px-6 py-3 rounded-full text-white w-full flex items-center justify-center"
-            onClick={handleReset}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Image className="mr-2" size={20} />
-            Choose Another Image
-          </motion.button>
+            <motion.button
+              className="bg-[#40514E] hover:bg-[#11999E] px-6 py-4 rounded-xl text-white w-full flex items-center justify-center shadow-lg transform transition-all duration-200"
+              onClick={handleReset}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Image className="mr-2" size={20} />
+              Choose Different Image
+            </motion.button>
+          </div>
         </motion.div>
       ) : (
         <motion.div 
-          className="w-full space-y-4"
+          className="w-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          <label className="flex flex-col items-center px-4 py-6 bg-white text-primary rounded-lg shadow-lg tracking-wide border border-primary cursor-pointer hover:bg-primary hover:text-white transition-colors duration-200">
-            <Image className="w-8 h-8" />
-            <span className="mt-2 text-base">Select an image</span>
+          <label className="flex flex-col items-center px-6 py-12 bg-[#E4F9F5] text-[#11999E] rounded-xl border-2 border-dashed border-[#30E3CA] cursor-pointer hover:bg-[#E4F9F5]/70 transition-colors duration-200">
+            <Image className="w-12 h-12 mb-4 text-[#11999E]" />
+            <span className="text-lg font-medium text-[#11999E]">Upload Evidence</span>
+            <span className="text-sm text-[#11999E]/60 mt-2">All images are encrypted for privacy</span>
             <input
               type='file'
               className="hidden"
@@ -211,6 +228,9 @@ function WebcamCapture({ walletAddress, signer }) {
               onChange={handleImageSelect}
             />
           </label>
+          <p className="text-xs text-[#40514E] text-center mt-4">
+            Supported formats: JPG, PNG, HEIC • Max size: 10MB
+          </p>
         </motion.div>
       )}
       {isModalOpen && <Modal uploadUrl={uploadUrl} closeModal={() => setIsModalOpen(false)} />}

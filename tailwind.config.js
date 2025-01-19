@@ -7,12 +7,19 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          light: '#E4F9F5',
-          DEFAULT: '#30E3CA',
-          dark: '#11999E',
+          light: '#e6f7ff',
+          DEFAULT: '#1890ff',
+          dark: '#096dd9',
         },
-        secondary: '#40514E',
+        secondary: {
+          light: '#f6ffed',
+          DEFAULT: '#52c41a',
+          dark: '#389e0d',
+        },
       },
+      scale: {
+        '102': '1.02',
+      }
     },
   },
   plugins: [],
