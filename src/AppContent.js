@@ -15,13 +15,30 @@ function AppContent() {
   const [signer, setSigner] = useState(null);
   const [walletAddress, setWalletAddress] = useState('');
 
+  useEffect(() => {
+    // Check if Android and should redirect to app
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    const shouldRedirectToApp = new URLSearchParams(window.location.search).get('redirect') === 'app';
+    
+    if (isAndroid && shouldRedirectToApp) {
+      // Replace 'your.app.package' with your actual Android app package name
+      window.location.href = 'intent://reclaim#Intent;scheme=reclaim;package=com.example.reclaim';
+    }
+  }, []);
+
   const handleConnectWallet = async () => {
     setLoading(true);
     try {
       if (isMobile()) {
         if (typeof window.ethereum === 'undefined') {
-          window.location.href = 'https://metamask.app.link/dapp/https://kichuman28.github.io/ipfs/';
-          return;
+          if (/Android/i.test(navigator.userAgent)) {
+            // Redirect to Play Store or your Android app
+            window.location.href = 'intent://reclaim#Intent;scheme=reclaim;package=com.example.reclaim;end';
+            return;
+          } else {
+            window.location.href = 'https://metamask.app.link/dapp/https://kichuman28.github.io/ipfs/';
+            return;
+          }
         }
       }
 
