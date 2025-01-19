@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import AppContent from './AppContent';
 
 function App() {
@@ -11,6 +11,9 @@ function App() {
         
         {/* Define route for the main wallet connection app */}
         <Route path="/app" element={<AppContent />} />
+        
+        {/* Redirect all other routes to /app */}
+        <Route path="*" element={<Navigate to="/app" replace />} />
       </Routes>
     </Router>
   );
