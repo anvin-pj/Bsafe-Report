@@ -1,28 +1,20 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
-import Webcam from 'react-webcam';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Camera, RotateCcw, Upload, Send, Eye, RefreshCw, MapPin } from 'lucide-react';
+import { Upload, Send, MapPin, Image } from 'lucide-react';
 import Modal from './Modal';
 import { pinata } from '../utils/config';
 import { ethers } from 'ethers';
 import { contractABI, contractAddress } from '../utils/contract';
 
 function WebcamCapture({ walletAddress, signer }) {
-  const webcamRef = useRef(null);
-  const [capturedImage, setCapturedImage] = useState(null);
-  const [isWebcamOn, setIsWebcamOn] = useState(true);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [uploadUrl, setUploadUrl] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isFrontCamera, setIsFrontCamera] = useState(true);
   const [isUploading, setIsUploading] = useState(false);
   const [isUploaded, setIsUploaded] = useState(false);
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
   const [isGettingLocation, setIsGettingLocation] = useState(false);
-
-  const videoConstraints = {
-    facingMode: isFrontCamera ? 'user' : { exact: 'environment' },
-  };
 
   useEffect(() => {
     getLocation();
@@ -49,19 +41,22 @@ function WebcamCapture({ walletAddress, signer }) {
     }
   };
 
-  const capture = useCallback(() => {
-    const imageSrc = webcamRef.current.getScreenshot();
-    if (imageSrc) {
-      setCapturedImage(imageSrc);
-      setIsWebcamOn(false);
+  const handleImageSelect = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setSelectedImage(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
-  }, [webcamRef]);
+  };
 
   const handleUpload = async () => {
-    if (!capturedImage) return;
+    if (!selectedImage) return;
     setIsUploading(true);
     try {
-      const response = await fetch(capturedImage);
+      const response = await fetch(selectedImage);
       const blob = await response.blob();
       const formData = new FormData();
       formData.append('file', blob, 'photo.jpg');
@@ -93,16 +88,11 @@ function WebcamCapture({ walletAddress, signer }) {
     }
   };
 
-  const toggleCamera = () => {
-    setIsFrontCamera((prev) => !prev);
-  };
-
-  const handleRecapture = () => {
-    setCapturedImage(null);
-    setIsWebcamOn(true);
+  const handleReset = () => {
+    setSelectedImage(null);
     setIsUploaded(false);
     setDescription('');
-    getLocation(); // Refresh location when recapturing
+    getLocation();
   };
 
   return (
@@ -112,24 +102,16 @@ function WebcamCapture({ walletAddress, signer }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <h2 className="text-2xl font-bold text-secondary mb-6">Capture Evidence</h2>
-      {isWebcamOn && (
-        <Webcam
-          audio={false}
-          ref={webcamRef}
-          screenshotFormat="image/jpeg"
-          videoConstraints={videoConstraints}
-          className="mb-4 w-full rounded-lg shadow-md"
-        />
-      )}
-      {capturedImage ? (
+      <h2 className="text-2xl font-bold text-secondary mb-6">Upload Evidence</h2>
+      
+      {selectedImage ? (
         <motion.div 
           className="w-full space-y-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          <img src={capturedImage} alt="Captured" className="mb-4 w-full rounded-lg shadow-lg" />
+          <img src={selectedImage} alt="Selected" className="mb-4 w-full rounded-lg shadow-lg" />
           
           <motion.div
             className="w-full"
@@ -191,27 +173,25 @@ function WebcamCapture({ walletAddress, signer }) {
           )}
 
           {isUploaded && (
-            <>
-              <motion.button
-                className="bg-primary hover:bg-primary-dark px-6 py-3 rounded-full text-white w-full flex items-center justify-center"
-                onClick={handleSubmitReport}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Send className="mr-2" size={20} />
-                Submit Report
-              </motion.button>
-            </>
+            <motion.button
+              className="bg-primary hover:bg-primary-dark px-6 py-3 rounded-full text-white w-full flex items-center justify-center"
+              onClick={handleSubmitReport}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Send className="mr-2" size={20} />
+              Submit Report
+            </motion.button>
           )}
 
           <motion.button
             className="bg-red-500 hover:bg-red-600 px-6 py-3 rounded-full text-white w-full flex items-center justify-center"
-            onClick={handleRecapture}
+            onClick={handleReset}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <RotateCcw className="mr-2" size={20} />
-            Recapture Photo
+            <Image className="mr-2" size={20} />
+            Choose Another Image
           </motion.button>
         </motion.div>
       ) : (
@@ -221,24 +201,16 @@ function WebcamCapture({ walletAddress, signer }) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          <motion.button 
-            className="bg-primary-dark hover:bg-secondary px-6 py-3 rounded-full text-white w-full flex items-center justify-center"
-            onClick={capture}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Camera className="mr-2" size={20} />
-            Capture Photo
-          </motion.button>
-          <motion.button 
-            className="bg-primary hover:bg-primary-dark px-6 py-3 rounded-full text-white w-full flex items-center justify-center"
-            onClick={toggleCamera}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <RefreshCw className="mr-2" size={20} />
-            Switch to {isFrontCamera ? 'Back' : 'Front'} Camera
-          </motion.button>
+          <label className="flex flex-col items-center px-4 py-6 bg-white text-primary rounded-lg shadow-lg tracking-wide border border-primary cursor-pointer hover:bg-primary hover:text-white transition-colors duration-200">
+            <Image className="w-8 h-8" />
+            <span className="mt-2 text-base">Select an image</span>
+            <input
+              type='file'
+              className="hidden"
+              accept="image/*"
+              onChange={handleImageSelect}
+            />
+          </label>
         </motion.div>
       )}
       {isModalOpen && <Modal uploadUrl={uploadUrl} closeModal={() => setIsModalOpen(false)} />}
