@@ -22,7 +22,7 @@ function AppContent() {
     
     if (isAndroid && shouldRedirectToApp) {
       // Replace 'your.app.package' with your actual Android app package name
-      window.location.href = 'intent://reclaim#Intent;scheme=reclaim;package=com.example.reclaim';
+      window.location.href = 'intent://bsafe#Intent;scheme=bsafe;package=com.example.bsafe';
     }
   }, []);
 
@@ -33,10 +33,10 @@ function AppContent() {
         if (typeof window.ethereum === 'undefined') {
           if (/Android/i.test(navigator.userAgent)) {
             // Redirect to Play Store or your Android app
-            window.location.href = 'intent://reclaim#Intent;scheme=reclaim;package=com.example.reclaim;end';
+            window.location.href = 'intent://bsafe#Intent;scheme=bsafe;package=com.example.bsafe;end';
             return;
           } else {
-            window.location.href = 'https://metamask.app.link/dapp/https://kichuman28.github.io/ipfs/';
+            window.location.href = 'https://metamask.app.link/dapp/kichuman28.github.io/ipfs/';
             return;
           }
         }
@@ -79,13 +79,25 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#E4F9F5] to-[#E4F9F5] flex flex-col items-center justify-center p-4 sm:p-8">
+      <motion.div
+        className="mb-8"
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+      >
+        <img 
+          src={process.env.PUBLIC_URL + '/bsafe_logo.png'} 
+          className="w-48 h-48"
+          alt="Bsafe Logo" 
+        />
+      </motion.div>
       <motion.h1 
         className="text-5xl font-bold mb-12 text-[#30E3CA]"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        Reclaim
+        Bsafe
       </motion.h1>
 
       {!walletConnected ? (

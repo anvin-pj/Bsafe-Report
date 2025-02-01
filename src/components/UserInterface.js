@@ -112,7 +112,7 @@ function UserInterface({ walletAddress, signer }) {
           </h1>
 
           <p className="text-center text-[#40514E] mb-8">
-            Anonymously report drug-related incidents. Your identity remains protected while helping create safer communities.
+            Anonymously report crime incidents. Your identity remains protected while helping create safer communities.
           </p>
 
           {/* Rewards Box */}

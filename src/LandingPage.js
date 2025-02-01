@@ -26,7 +26,7 @@ function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-light to-primary">
       <header className="flex justify-between items-center p-6">
-        <div className="text-3xl font-bold text-primary-dark">RECLAIM</div>
+        <div className="text-3xl font-bold text-primary-dark">BSAFE</div>
         <button 
           className="text-primary-dark hover:text-secondary transition-colors duration-300"
           onClick={handleHowToUse}
@@ -43,7 +43,11 @@ function LandingPage() {
           transition={{ duration: 0.8 }}
         >
           <div className="relative">
-            <img src="https://i.imgur.com/nywH83H.png" alt="Creator" className="w-full h-auto rounded-lg shadow-2xl" />
+            <img 
+              src={process.env.PUBLIC_URL + '/bsafe_logo.png'} 
+              alt="Bsafe Logo" 
+              className="w-3/4 mx-auto h-auto rounded-lg shadow-2xl"
+            />
           </div>
         </motion.div>
         
@@ -55,7 +59,7 @@ function LandingPage() {
         >
           <h1 className="text-4xl font-bold text-secondary mb-6">Report Drug Abuse</h1>
           <p className="text-xl text-secondary mb-8">
-            Reclaim empowers citizens to anonymously and securely report drug-related activities, earning rewards while contributing to safer communities and making public safety a community-driven mission.
+            Bsafe empowers citizens to anonymously and securely report drug-related activities, earning rewards while contributing to safer communities and making public safety a community-driven mission.
           </p>
           <motion.button 
             className="bg-primary-dark text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-secondary transition-colors duration-300 shadow-lg"
