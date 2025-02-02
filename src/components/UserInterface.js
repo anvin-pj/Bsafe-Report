@@ -106,24 +106,24 @@ function UserInterface({ walletAddress, signer }) {
         </h2>
 
         {/* Main Content Area */}
-        <div className="bg-[#E4F9F5] rounded-2xl p-6">
-          <h1 className="text-4xl font-bold text-center text-[#30E3CA] mb-6">
+        <div className="bg-[#09122C] rounded-2xl p-6">
+          <h1 className="text-4xl font-bold text-center text-[#E17564] mb-6">
             SafeReport
           </h1>
 
-          <p className="text-center text-[#40514E] mb-8">
+          <p className="text-center text-[#BE3144] mb-8">
             Anonymously report crime incidents. Your identity remains protected while helping create safer communities.
           </p>
 
           {/* Rewards Box */}
-          <div className="bg-white/50 rounded-2xl p-6 mb-8">
+          <div className="bg-[#872341]/50 rounded-2xl p-6 mb-8">
             <div className="flex items-center justify-center gap-2 mb-2">
               <span className="text-2xl">🎁</span>
-              <h3 className="text-xl text-[#11999E]">
+              <h3 className="text-xl text-[#E17564]">
                 Rewards for Verified Reports
               </h3>
             </div>
-            <p className="text-center text-[#40514E]">
+            <p className="text-center text-[#E17564]">
               Submit accurate reports and earn rewards upon verification
             </p>
           </div>

@@ -200,7 +200,7 @@ function WebcamCapture({ walletAddress, signer }) {
             )}
 
             <motion.button
-              className="bg-[#40514E] hover:bg-[#11999E] px-6 py-4 rounded-xl text-white w-full flex items-center justify-center shadow-lg transform transition-all duration-200"
+              className="bg-[#09122C] hover:bg-[#872341] px-6 py-4 rounded-xl text-white w-full flex items-center justify-center shadow-lg transform transition-all duration-200"
               onClick={handleReset}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -217,7 +217,7 @@ function WebcamCapture({ walletAddress, signer }) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          <label className="flex flex-col items-center px-6 py-12 bg-[#E4F9F5] text-[#11999E] rounded-xl border-2 border-dashed border-[#30E3CA] cursor-pointer hover:bg-[#E4F9F5]/70 transition-colors duration-200">
+          <label className="flex flex-col items-center px-6 py-12 bg-[#09122C] text-[#E17564] rounded-xl border-2 border-dashed border-[#872341] cursor-pointer hover:bg-[#09122C]/70 transition-colors duration-200">
             <Image className="w-12 h-12 mb-4 text-[#11999E]" />
             <span className="text-lg font-medium text-[#11999E]">Upload Evidence</span>
             <span className="text-sm text-[#11999E]/60 mt-2">All images are encrypted for privacy</span>

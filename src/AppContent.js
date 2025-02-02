@@ -78,7 +78,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#E4F9F5] to-[#E4F9F5] flex flex-col items-center justify-center p-4 sm:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-[#BE3144] to-[#872341] flex flex-col items-center justify-center p-4 sm:p-8">
       <motion.div
         className="mb-8"
         initial={{ opacity: 0, y: -30 }}
@@ -92,7 +92,7 @@ function AppContent() {
         />
       </motion.div>
       <motion.h1 
-        className="text-5xl font-bold mb-12 text-[#30E3CA]"
+        className="text-5xl font-bold mb-12 text-[#E17564]"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -107,7 +107,7 @@ function AppContent() {
           transition={{ duration: 0.5 }}
         >
           <motion.button
-            className={`bg-[#30E3CA] hover:bg-[#11999E] px-8 py-4 rounded-full text-white text-lg font-semibold transition-all duration-300 flex items-center ${loading ? 'animate-pulse' : ''}`}
+            className={`bg-[#09122C] hover:bg-[#872341] px-8 py-4 rounded-full text-white text-lg font-semibold transition-all duration-300 flex items-center ${loading ? 'animate-pulse' : ''}`}
             onClick={handleConnectWallet}
             disabled={loading}
             whileHover={{ scale: 1.05 }}

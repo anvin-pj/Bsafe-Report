@@ -35,9 +35,9 @@ function LandingPage() {
         </button>
       </header>
       
-      <main className="container mx-auto px-4 py-20 flex flex-col lg:flex-row items-center justify-between">
+      <main className="container mx-auto px-4 py-20 flex flex-col lg:flex-row items-center justify-between bg-gradient-to-br from-[#BE3144] to-[#872341]">
         <motion.div 
-          className="lg:w-5/12 mb-12 lg:mb-0"
+          className="lg:w-8/12 mb-12 lg:mb-0"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -46,7 +46,7 @@ function LandingPage() {
             <img 
               src={process.env.PUBLIC_URL + '/bsafe_logo.png'} 
               alt="Bsafe Logo" 
-              className="w-3/4 mx-auto h-auto rounded-lg shadow-2xl"
+              className="w-full mx-auto h-auto rounded-lg shadow-2xl transform scale-[2.0]"
             />
           </div>
         </motion.div>
@@ -57,12 +57,12 @@ function LandingPage() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h1 className="text-4xl font-bold text-secondary mb-6">Report Drug Abuse</h1>
-          <p className="text-xl text-secondary mb-8">
+          <h1 className="text-4xl font-bold text-[#E17564] mb-6">Report Drug Abuse</h1>
+          <p className="text-xl text-[#E17564] mb-8">
             Bsafe empowers citizens to anonymously and securely report drug-related activities, earning rewards while contributing to safer communities and making public safety a community-driven mission.
           </p>
           <motion.button 
-            className="bg-primary-dark text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-secondary transition-colors duration-300 shadow-lg"
+            className="bg-[#09122C] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#E17564] transition-colors duration-300 shadow-lg"
             onClick={handleGetStarted}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
